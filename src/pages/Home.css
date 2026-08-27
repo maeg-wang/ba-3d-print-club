@@ -1,0 +1,103 @@
+.hero {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    color: white;
+    padding: 6rem 2rem;
+    text-align: center;
+}
+
+    .hero h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero p {
+        font-size: 1.25rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto 2rem;
+    }
+
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero {
+        padding: 4rem 1.5rem;
+    }
+}
+
+/* ===== 快速入口：悬浮挤开效果 ===== */
+.entry-grid {
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.entry-card {
+    flex: 1;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* 悬浮某个卡片时，其他卡片被挤开、变暗、模糊 */
+.entry-grid:has(.entry-card:hover) .entry-card:not(:hover) {
+    flex: 0.75;
+    opacity: 0.5;
+    filter: blur(1px) grayscale(0.3);
+    transform: scale(0.95);
+}
+
+/* 当前悬浮卡片放大占据空间 */
+.entry-card:hover {
+    flex: 1.5;
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.2);
+}
+
+    /* 图标 3D 翻转放大 */
+    .entry-card:hover .card-icon {
+        animation: icon3DFlip 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* 字体放大 */
+    .entry-card:hover h3 {
+        font-size: 1.6rem;
+    }
+
+    .entry-card:hover p {
+        font-size: 1.05rem;
+        transition: font-size 0.3s ease;
+    }
+
+@keyframes icon3DFlip {
+    0% {
+        transform: perspective(400px) rotateY(0deg) scale(1);
+    }
+
+    50% {
+        transform: perspective(400px) rotateY(180deg) scale(1.2);
+    }
+
+    100% {
+        transform: perspective(400px) rotateY(360deg) scale(1.3);
+    }
+}
+
+@media (max-width: 768px) {
+    .entry-grid {
+        flex-direction: column;
+    }
+
+        .entry-grid:has(.entry-card:hover) .entry-card:not(:hover) {
+            flex: 1;
+            opacity: 0.6;
+            filter: blur(0.5px);
+            transform: scale(0.95);
+        }
+
+    .entry-card:hover {
+        flex: 1.2;
+    }
+}

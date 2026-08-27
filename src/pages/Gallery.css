@@ -1,0 +1,82 @@
+/* ===== 作品展示：悬浮挤开效果 ===== */
+.gallery-grid {
+    display: flex;
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+.gallery-item {
+    flex: 1;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+}
+
+/* 悬浮某个作品时，其他被挤开 */
+.gallery-grid:has(.gallery-item:hover) .gallery-item:not(:hover) {
+    flex: 0.75;
+    opacity: 0.5;
+    filter: blur(1px) grayscale(0.3);
+    transform: scale(0.95);
+}
+
+/* 当前作品占据更多空间 */
+.gallery-item:hover {
+    flex: 1.5;
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+}
+
+/* 图片/色块放大 */
+.gallery-thumb {
+    height: 240px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.gallery-item:hover .gallery-thumb {
+    transform: scale(1.1);
+}
+
+.gallery-emoji {
+    font-size: 4rem;
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+.gallery-item:hover .gallery-emoji {
+    transform: scale(1.2) rotate(-5deg);
+}
+
+.gallery-info {
+    padding: 1.5rem;
+}
+
+    .gallery-info h3 {
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+    }
+
+.gallery-tip {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--text-light);
+}
+
+@media (max-width: 768px) {
+    .gallery-grid {
+        flex-direction: column;
+    }
+
+        .gallery-grid:has(.gallery-item:hover) .gallery-item:not(:hover) {
+            flex: 1;
+            opacity: 0.6;
+            filter: blur(0.5px);
+            transform: scale(0.95);
+        }
+
+    .gallery-item:hover {
+        flex: 1.2;
+    }
+}
