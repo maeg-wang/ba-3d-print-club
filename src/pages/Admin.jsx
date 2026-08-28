@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import './Admin.css'
 
-const API_BASE = 'ba-3d-print-api.wangzenfa2022.workers.dev'
+const API_BASE = 'https://3d-api.maegwang.dpdns.org/'
 
 // 从 sessionStorage 读取密码（关闭标签页失效，比 localStorage 安全）
 const getStoredKey = () => sessionStorage.getItem('admin_key') || ''
