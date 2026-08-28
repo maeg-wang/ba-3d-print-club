@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import './Register.css';
 
+const API_BASE = 'https://3d-api.maegwang.dpdns.org'
+
 function Register() {
     const [form, setForm] = useState({
         applicant_name: '',
@@ -42,7 +44,7 @@ function Register() {
 
         setSubmitting(true);
         try {
-            const res = await fetch('https://3d-api.maegwang.dpdns.org/api/jobs', {
+            const res = await fetch(`${API_BASE}/api/jobs`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form)
