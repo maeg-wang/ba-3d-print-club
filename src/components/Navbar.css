@@ -1,7 +1,7 @@
 .navbar {
     position: sticky;
     top: 0;
-    background: rgba(255,255,255,0.95);
+    background: rgba(255,255,255,0.75);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid #e5e7eb;
     z-index: 1000;
@@ -21,6 +21,9 @@
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--primary);
+    height: 5rem;
+    display: flex;
+    align-items: center;
 }
 
 .nav-links {

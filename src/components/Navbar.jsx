@@ -5,7 +5,10 @@ function Navbar() {
     return (
         <nav className="navbar">
             <div className="nav-container">
-                <NavLink to="/" className="logo">3D打印社团</NavLink>
+                <div className="logo">
+                    <NavLink to="https://www.beijingacademy.com.cn/"><img src="./logo1.png" alt="北京中学" className="logo"></img></NavLink>
+                    <NavLink to="/" className="logo">3D打印社团</NavLink>
+                </div>
                 <ul className="nav-links">
                     <li><NavLink to="/" className={({ isActive }) => isActive ? 'active' : ''}>首页</NavLink></li>
                     <li><NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>关于我们</NavLink></li>

@@ -40,12 +40,11 @@ function Home() {
             <section className="container features">
                 <h2 className="section-title">社团服务</h2>
                 <div className="feature-list">
-                    <div className="feature-item">FDM 3D打印机免费使用</div>
-                    <div className="feature-item">光固化打印（SLA）高精度模型</div>
+                    <div className="feature-item">3D打印机免费使用</div>
+                    <div className="feature-item">拓竹H2C打印高精度模型</div>
                     <div className="feature-item">建模软件教学（Fusion 360, Blender）</div>
                     <div className="feature-item">模型切片与打印参数优化指导</div>
-                    <div className="feature-item">耗材提供（PLA/PETG/树脂）</div>
-                    <div className="feature-item">每周技术分享会</div>
+                    <div className="feature-item">耗材提供（PLA/PETG）</div>
                 </div>
             </section>
         </div>

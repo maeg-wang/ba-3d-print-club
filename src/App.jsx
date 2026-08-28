@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import Navbar from './components/Navbar'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -18,7 +19,7 @@ function App() {
                 <Route path="/admin" element={<Admin />} />
             </Routes>
             <footer className="footer">
-                <p>© 2026 学校3D打印社团 · React + GitHub Pages</p>
+                <p>© 2026 北京中学 3D打印社团 · React + Cloudflare Pages + Cloudflare Workers · <Link to="https://github.com/maeg-wang/ba-3d-print-club">🔗GitHub</Link></p>
             </footer>
         </div>
     )
