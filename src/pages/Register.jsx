@@ -19,6 +19,8 @@ function Register() {
     const [submitting, setSubmitting] = useState(false);
     const [result, setResult] = useState(null);
 
+    const [showSuccess, setShowSuccess] = useState(false);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setForm(prev => ({ ...prev, [name]: value }));
@@ -42,32 +44,39 @@ function Register() {
     };
 
     const handleSubmit = async (e) => {
-        e.preventDefault();
+        e.preventDefault()
         if (!form.applicant_name || !form.class_name) {
-            alert('请填写姓名和班级');
-            return;
+            alert('请填写姓名和班级')
+            return
         }
 
-        setSubmitting(true);
+        setSubmitting(true)
         try {
             const res = await fetch(`${API_BASE}/api/jobs`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(form)
-            });
-            const data = await res.json();
-            setResult(data);
+            })
+            const data = await res.json()
+
             if (data.success) {
+                setResult(data)
+                setShowSuccess(true)
+                // 3 秒后自动隐藏
+                setTimeout(() => setShowSuccess(false), 5000)
+                // 清空表单
                 setForm({
                     applicant_name: '', class_name: '', contact: '',
                     material: 'PLA', dimensions: '', file_name: '',
                     file_size: 0, purpose: '', priority: 'normal', notes: ''
-                });
+                })
+            } else {
+                alert('提交失败: ' + (data.error || '未知错误'))
             }
         } catch (err) {
-            alert('提交失败: ' + err.message);
+            alert('提交失败: ' + err.message)
         } finally {
-            setSubmitting(false);
+            setSubmitting(false)
         }
     };
 
@@ -145,17 +154,18 @@ function Register() {
                     </button>
                 </form>
 
-                {result && (
-                    <div className={`result-box ${result.success ? 'success' : 'error'}`}>
-                        {result.success ? (
-                            <>
-                                ✅ <strong>登记成功！</strong><br />
-                                任务编号：{result.jobId}<br />
-                                <small>请记下编号，线下交接文件时告知管理员</small>
-                            </>
-                        ) : (
-                            <>❌ 提交失败：{result.message}</>
-                        )}
+                {/* 成功提示弹窗 */}
+                {showSuccess && result && (
+                    <div className="success-toast">
+                        <div className="success-toast-content">
+                            <div className="success-icon">✅</div>
+                            <div>
+                                <h4>登记成功！</h4>
+                                <p>任务编号：<strong>{result.jobId}</strong></p>
+                                <p className="success-hint">请记下编号，线下交接文件时告知管理员</p>
+                            </div>
+                            <button className="success-close" onClick={() => setShowSuccess(false)}>×</button>
+                        </div>
                     </div>
                 )}
             </div>
