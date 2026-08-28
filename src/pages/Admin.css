@@ -1,8 +1,9 @@
 .admin-hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: var(--admin-hero-gradient);
     color: white;
     padding: 3rem 2rem;
     text-align: center;
+    transition: background 0.4s ease;
 }
 
     .admin-hero h1 {
@@ -18,12 +19,13 @@
 }
 
 .stat-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 1rem;
     padding: 1.5rem;
     box-shadow: var(--shadow);
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     text-align: center;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .stat-value {
@@ -38,7 +40,7 @@
 }
 
 .stat-card:nth-child(1) .stat-value {
-    color: #f59e0b;
+    color: var(--accent);
 }
 
 .stat-card:nth-child(2) .stat-value {
@@ -61,21 +63,20 @@
     align-items: center;
 }
 
-    .filter-bar select,
-    .filter-bar input {
+    .filter-bar select, .filter-bar input {
         padding: 0.5rem 0.875rem;
-        border: 1px solid #d1d5db;
+        border: 1px solid var(--input-border);
         border-radius: 0.5rem;
         font-size: 0.875rem;
-        background: white;
-        transition: border-color 0.2s, box-shadow 0.2s;
+        background: var(--input-bg);
+        color: var(--text);
+        transition: border-color 0.2s, box-shadow 0.2s, background-color 0.4s ease, color 0.4s ease;
     }
 
-        .filter-bar select:focus,
-        .filter-bar input:focus {
+        .filter-bar select:focus, .filter-bar input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px var(--focus-ring);
         }
 
     .filter-bar input {
@@ -83,12 +84,18 @@
         min-width: 200px;
     }
 
+        .filter-bar input::placeholder {
+            color: var(--text-light);
+            opacity: 0.7;
+        }
+
 .table-wrap {
-    background: white;
+    background: var(--card-bg);
     border-radius: 1rem;
     box-shadow: var(--shadow);
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     overflow: hidden;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
 .admin-table {
@@ -98,7 +105,8 @@
 }
 
     .admin-table thead {
-        background: var(--bg-alt);
+        background: var(--table-header-bg);
+        transition: background-color 0.4s ease;
     }
 
     .admin-table th {
@@ -106,15 +114,17 @@
         text-align: left;
         font-weight: 600;
         color: var(--text);
-        border-bottom: 1px solid #e5e7eb;
+        border-bottom: 1px solid var(--border-color);
         white-space: nowrap;
+        transition: color 0.4s ease, border-color 0.4s ease;
     }
 
     .admin-table td {
         padding: 1rem;
-        border-bottom: 1px solid #f3f4f6;
+        border-bottom: 1px solid var(--border-color);
         color: var(--text);
         vertical-align: middle;
+        transition: color 0.4s ease, border-color 0.4s ease;
     }
 
     .admin-table tbody tr {
@@ -122,7 +132,7 @@
     }
 
         .admin-table tbody tr:hover {
-            background: #f8fafc;
+            background: var(--table-row-hover);
         }
 
 .status-badge {
@@ -135,28 +145,28 @@
 }
 
 .status-pending {
-    background: #fef3c7;
-    color: #92400e;
+    background: var(--status-pending-bg);
+    color: var(--status-pending-text);
 }
 
 .status-claimed {
-    background: #dbeafe;
-    color: #1e40af;
+    background: var(--status-claimed-bg);
+    color: var(--status-claimed-text);
 }
 
 .status-printing {
-    background: #ede9fe;
-    color: #5b21b6;
+    background: var(--status-printing-bg);
+    color: var(--status-printing-text);
 }
 
 .status-completed {
-    background: #d1fae5;
-    color: #065f46;
+    background: var(--status-completed-bg);
+    color: var(--status-completed-text);
 }
 
 .status-cancelled {
-    background: #f3f4f6;
-    color: #374151;
+    background: var(--status-cancelled-bg);
+    color: var(--status-cancelled-text);
 }
 
 .priority-urgent {
@@ -166,17 +176,19 @@
 
 .action-select {
     padding: 0.375rem 0.5rem;
-    border: 1px solid #d1d5db;
+    border: 1px solid var(--input-border);
     border-radius: 0.375rem;
     font-size: 0.75rem;
-    background: white;
+    background: var(--input-bg);
+    color: var(--text);
     cursor: pointer;
+    transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
 }
 
 .btn-delete {
-    background: #fef2f2;
+    background: var(--delete-bg);
     color: #dc2626;
-    border: 1px solid #fecaca;
+    border: 1px solid var(--delete-border);
     padding: 0.375rem 0.75rem;
     border-radius: 0.375rem;
     font-size: 0.75rem;
@@ -187,12 +199,11 @@
 }
 
     .btn-delete:hover {
-        background: #dc2626;
-        color: white;
+        background: var(--delete-hover-bg);
+        color: var(--delete-hover-text);
     }
 
-.loading,
-.empty {
+.loading, .empty {
     text-align: center;
     padding: 3rem;
     color: var(--text-light);
@@ -227,14 +238,15 @@
 }
 
 .admin-login-box {
-    background: white;
+    background: var(--login-bg);
     border-radius: 1rem;
     padding: 2.5rem;
     box-shadow: var(--shadow);
-    border: 1px solid #e5e7eb;
+    border: 1px solid var(--border-color);
     width: 100%;
     max-width: 400px;
     text-align: center;
+    transition: background-color 0.4s ease, border-color 0.4s ease;
 }
 
     .admin-login-box h2 {
@@ -250,16 +262,19 @@
     .admin-login-box input {
         width: 100%;
         padding: 0.75rem 1rem;
-        border: 1px solid #d1d5db;
+        border: 1px solid var(--input-border);
         border-radius: 0.5rem;
         font-size: 1rem;
         margin-bottom: 1rem;
+        background: var(--input-bg);
+        color: var(--text);
+        transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
     }
 
         .admin-login-box input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+            box-shadow: 0 0 0 3px var(--focus-ring);
         }
 
 .auth-error {

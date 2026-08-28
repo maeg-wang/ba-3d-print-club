@@ -1,8 +1,9 @@
 .hero {
-    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    background: var(--hero-gradient);
     color: white;
     padding: 6rem 2rem;
     text-align: center;
+    transition: background 0.4s ease;
 }
 
     .hero h1 {
@@ -27,7 +28,6 @@
     }
 }
 
-/* ===== 快速入口：悬浮挤开效果 ===== */
 .entry-grid {
     display: flex;
     gap: 1.5rem;
@@ -39,9 +39,9 @@
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    background: var(--card-bg);
 }
 
-/* 悬浮某个卡片时，其他卡片被挤开、变暗、模糊 */
 .entry-grid:has(.entry-card:hover) .entry-card:not(:hover) {
     flex: 0.75;
     opacity: 0.5;
@@ -49,19 +49,16 @@
     transform: scale(0.95);
 }
 
-/* 当前悬浮卡片放大占据空间 */
 .entry-card:hover {
     flex: 1.5;
     border-color: var(--primary);
-    box-shadow: 0 20px 40px -10px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 20px 40px -10px var(--card-hover-shadow);
 }
 
-    /* 图标 3D 翻转放大 */
     .entry-card:hover .card-icon {
         animation: icon3DFlip 0.7s cubic-bezier(0.4, 0, 0.2, 1) forwards;
     }
 
-    /* 字体放大 */
     .entry-card:hover h3 {
         font-size: 1.6rem;
     }
@@ -69,6 +66,7 @@
     .entry-card:hover p {
         font-size: 1.05rem;
         transition: font-size 0.3s ease;
+        color: var(--text);
     }
 
 @keyframes icon3DFlip {

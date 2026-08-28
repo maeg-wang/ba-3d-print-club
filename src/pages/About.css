@@ -1,3 +1,5 @@
 .about-hero {
+    background: var(--about-hero-gradient);
     padding: 4rem 2rem !important;
+    transition: background 0.4s ease;
 }
