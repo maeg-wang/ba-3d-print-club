@@ -71,7 +71,8 @@ function Admin() {
 
     useEffect(() => {
         if (adminKey) {
-            verifyAndLoad(adminKey)
+            const timer = setTimeout(() => verifyAndLoad(adminKey), 0)
+            return () => clearTimeout(timer)
         }
     }, [])
 
@@ -148,23 +149,6 @@ function Admin() {
         }
     }
 
-    useEffect(() => {
-        fetchJobs()
-    }, [])
-
-    const fetchJobs = async () => {
-        try {
-            setLoading(true)
-            const res = await fetchWithAuth(`${API_BASE}/jobs?status=all`)
-            const data = await res.json()
-            setJobs(data.jobs || [])
-        } catch (err) {
-            alert('加载失败: ' + err.message)
-        } finally {
-            setLoading(false)
-        }
-    }
-
     const filteredJobs = jobs.filter(job => {
         const matchStatus = filter === 'all' || job.status === filter
         const keyword = search.trim().toLowerCase()
@@ -180,29 +164,6 @@ function Admin() {
         pending: jobs.filter(j => j.status === 'pending').length,
         active: jobs.filter(j => j.status === 'claimed' || j.status === 'printing').length,
         completed: jobs.filter(j => j.status === 'completed').length
-    }
-
-    const updateStatus = async (jobId, newStatus) => {
-        try {
-            await fetchWithAuth(`${API_BASE}/jobs/${jobId}/status`, {
-                method: 'PATCH',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ status: newStatus })
-            })
-            fetchJobs()
-        } catch (err) {
-            alert('更新失败: ' + err.message)
-        }
-    }
-
-    const deleteJob = async (jobId) => {
-        if (!confirm('确定删除这条记录？此操作不可恢复。')) return
-        try {
-            await fetchWithAuth(`${API_BASE}/jobs/${jobId}`, { method: 'DELETE' })
-            fetchJobs()
-        } catch (err) {
-            alert('删除失败: ' + err.message)
-        }
     }
 
     const formatDate = (iso) => {
