@@ -47,7 +47,7 @@ function Admin() {
         setLoading(true)
         setAuthError(false)
         try {
-            const res = await fetch(`${API_BASE}/jobs?status=all`, {
+            const res = await fetch(`${API_BASE}/api/jobs?status=all`, {
                 headers: { 'X-Admin-Key': key }
             })
             if (res.status === 401) {
