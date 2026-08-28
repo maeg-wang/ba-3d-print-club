@@ -117,7 +117,7 @@ function Register() {
 
                     <div className="form-group">
                         <label>模型文件（仅登记文件名，线下交接）</label>
-                        <input type="file" accept=".stl,.obj,3mf" onChange={handleFileChange} />
+                        <input type="file" accept=".stl,.obj,.3mf" onChange={handleFileChange} />
                         {form.file_name && <span className="file-tag">📎 {form.file_name} ({(form.file_size / 1024 / 1024).toFixed(2)} MB)</span>}
                     </div>
 
