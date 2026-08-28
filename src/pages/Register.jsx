@@ -25,13 +25,19 @@ function Register() {
     };
 
     const handleFileChange = (e) => {
-        const file = e.target.files[0];
+        const file = e.target.files[0]
         if (file) {
+            const ext = file.name.split('.').pop().toLowerCase()
+            if (!['stl', 'obj', '3mf'].includes(ext)) {
+                alert('请上传 .stl 或 .obj 或 .3mf 格式的模型文件')
+                e.target.value = ''  // 清空选择
+                return
+            }
             setForm(prev => ({
                 ...prev,
                 file_name: file.name,
                 file_size: file.size
-            }));
+            }))
         }
     };
 
@@ -72,7 +78,7 @@ function Register() {
             <div className="register-box">
                 <div className="notice">
                     <strong>📢 登记须知：</strong><br />
-                    1. 请确保模型文件为 .stl 或 .obj 格式<br />
+                    1. 请确保模型文件为 .stl 或 .obj 或 .3mf格式<br />
                     2. 尺寸不超过 256mm*256mm*256mm（A1）或 300mm*320mm*320mm（H2C）<br />
                     3. 提交后请<strong>线下将文件拷贝给社团管理员</strong>，管理员会放入实体机队列
                 </div>
@@ -111,7 +117,7 @@ function Register() {
 
                     <div className="form-group">
                         <label>模型文件（仅登记文件名，线下交接）</label>
-                        <input type="file" accept=".stl,.obj" onChange={handleFileChange} />
+                        <input type="file" accept=".stl,.obj,3mf" onChange={handleFileChange} />
                         {form.file_name && <span className="file-tag">📎 {form.file_name} ({(form.file_size / 1024 / 1024).toFixed(2)} MB)</span>}
                     </div>
 
