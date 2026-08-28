@@ -11,6 +11,7 @@ function Navbar() {
                     <li><NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>关于我们</NavLink></li>
                     <li><NavLink to="/gallery" className={({ isActive }) => isActive ? 'active' : ''}>作品展示</NavLink></li>
                     <li><NavLink to="/register" className={({ isActive }) => isActive ? 'active' : ''}>打印登记</NavLink></li>
+                    <li><NavLink to="/admin" className={({ isActive }) => isActive ? 'active' : ''} style={{ color: '#dc2626', fontWeight: 700 }}>管理</NavLink></li>
                 </ul>
             </div>
         </nav>
