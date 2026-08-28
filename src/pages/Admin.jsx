@@ -85,7 +85,7 @@ function Admin() {
         if (!adminKey) return
         setLoading(true)
         try {
-            const res = await fetchWithAuth(`${API_BASE}/jobs?status=all`)
+            const res = await fetchWithAuth(`${API_BASE}/api/jobs?status=all`)
             if (res.status === 401) {
                 setAdminKey('')
                 setStoredKey('')
@@ -128,7 +128,7 @@ function Admin() {
 
     const updateStatus = async (jobId, newStatus) => {
         try {
-            await fetchWithAuth(`${API_BASE}/jobs/${jobId}/status`, {
+            await fetchWithAuth(`${API_BASE}/api/jobs/${jobId}/status`, {
                 method: 'PATCH',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ status: newStatus })
@@ -142,7 +142,7 @@ function Admin() {
     const deleteJob = async (jobId) => {
         if (!confirm('确定删除这条记录？此操作不可恢复。')) return
         try {
-            await fetchWithAuth(`${API_BASE}/jobs/${jobId}`, { method: 'DELETE' })
+            await fetchWithAuth(`${API_BASE}/api/jobs/${jobId}`, { method: 'DELETE' })
             fetchJobs()
         } catch (err) {
             alert('删除失败: ' + err.message)
